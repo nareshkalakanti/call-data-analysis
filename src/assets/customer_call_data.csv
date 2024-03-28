@@ -1,0 +1,41 @@
+Customer ID,Call Date,Call Type,Transcript,Subject Line,AHT,Summary,Todo,XYZ
+737,2024-03-22,Feedback,Lorem ipsum...,General question,3 minutes,Customer reported a problem with...,Email response required,N/A
+419,2024-03-22,Complaint,Lorem ipsum...,Issue with product,11 minutes,Customer reported a problem with...,Follow-up call,N/A
+444,2024-03-22,Inquiry,Lorem ipsum...,Feedback on service,12 minutes,Customer reported a problem with...,Follow-up call,N/A
+324,2024-03-22,Feedback,Lorem ipsum...,Issue with product,14 minutes,Customer reported a problem with...,Email response required,N/A
+747,2024-03-22,Inquiry,Lorem ipsum...,Issue with product,8 minutes,Customer reported a problem with...,No further action required,N/A
+481,2024-03-22,Feedback,Lorem ipsum...,General question,6 minutes,Customer reported a problem with...,Email response required,N/A
+633,2024-03-22,Complaint,Lorem ipsum...,Billing inquiry,15 minutes,Customer reported a problem with...,Follow-up call,N/A
+857,2024-03-22,Complaint,Lorem ipsum...,Issue with product,7 minutes,Customer reported a problem with...,Email response required,N/A
+831,2024-03-22,Feedback,Lorem ipsum...,Billing inquiry,2 minutes,Customer reported a problem with...,Email response required,N/A
+734,2024-03-22,Inquiry,Lorem ipsum...,General question,5 minutes,Customer reported a problem with...,Follow-up call,N/A
+936,2024-03-22,Complaint,Lorem ipsum...,Feedback on service,5 minutes,Customer reported a problem with...,No further action required,N/A
+262,2024-03-22,Inquiry,Lorem ipsum...,Billing inquiry,15 minutes,Customer reported a problem with...,Email response required,N/A
+736,2024-03-22,Complaint,Lorem ipsum...,General question,2 minutes,Customer reported a problem with...,No further action required,N/A
+493,2024-03-22,Feedback,Lorem ipsum...,Billing inquiry,9 minutes,Customer reported a problem with...,Email response required,N/A
+458,2024-03-22,Inquiry,Lorem ipsum...,Billing inquiry,1 minutes,Customer reported a problem with...,Follow-up call,N/A
+642,2024-03-22,Feedback,Lorem ipsum...,Billing inquiry,8 minutes,Customer reported a problem with...,Email response required,N/A
+120,2024-03-22,Feedback,Lorem ipsum...,General question,9 minutes,Customer reported a problem with...,Email response required,N/A
+211,2024-03-22,Inquiry,Lorem ipsum...,Feedback on service,15 minutes,Customer reported a problem with...,No further action required,N/A
+774,2024-03-22,Complaint,Lorem ipsum...,Feedback on service,12 minutes,Customer reported a problem with...,Email response required,N/A
+651,2024-03-22,Feedback,Lorem ipsum...,Issue with product,9 minutes,Customer reported a problem with...,Email response required,N/A
+354,2024-03-22,Complaint,Lorem ipsum...,Issue with product,6 minutes,Customer reported a problem with...,Email response required,N/A
+756,2024-03-22,Complaint,Lorem ipsum...,Issue with product,11 minutes,Customer reported a problem with...,Follow-up call,N/A
+688,2024-03-22,Feedback,Lorem ipsum...,Billing inquiry,11 minutes,Customer reported a problem with...,Email response required,N/A
+172,2024-03-22,Feedback,Lorem ipsum...,Issue with product,5 minutes,Customer reported a problem with...,Follow-up call,N/A
+923,2024-03-22,Feedback,Lorem ipsum...,General question,10 minutes,Customer reported a problem with...,Email response required,N/A
+694,2024-03-22,Feedback,Lorem ipsum...,Billing inquiry,11 minutes,Customer reported a problem with...,Email response required,N/A
+923,2024-03-22,Complaint,Lorem ipsum...,Billing inquiry,7 minutes,Customer reported a problem with...,Follow-up call,N/A
+504,2024-03-22,Inquiry,Lorem ipsum...,General question,13 minutes,Customer reported a problem with...,No further action required,N/A
+949,2024-03-22,Inquiry,Lorem ipsum...,Billing inquiry,1 minutes,Customer reported a problem with...,No further action required,N/A
+751,2024-03-22,Complaint,Lorem ipsum...,Billing inquiry,7 minutes,Customer reported a problem with...,Email response required,N/A
+506,2024-03-22,Feedback,Lorem ipsum...,General question,7 minutes,Customer reported a problem with...,Follow-up call,N/A
+630,2024-03-22,Complaint,Lorem ipsum...,Feedback on service,13 minutes,Customer reported a problem with...,No further action required,N/A
+266,2024-03-22,Complaint,Lorem ipsum...,General question,14 minutes,Customer reported a problem with...,Follow-up call,N/A
+451,2024-03-22,Inquiry,Lorem ipsum...,Feedback on service,1 minutes,Customer reported a problem with...,Email response required,N/A
+831,2024-03-22,Complaint,Lorem ipsum...,Issue with product,10 minutes,Customer reported a problem with...,No further action required,N/A
+715,2024-03-22,Complaint,Lorem ipsum...,Feedback on service,14 minutes,Customer reported a problem with...,Follow-up call,N/A
+322,2024-03-22,Inquiry,Lorem ipsum...,Billing inquiry,13 minutes,Customer reported a problem with...,Follow-up call,N/A
+689,2024-03-22,Inquiry,Lorem ipsum...,Billing inquiry,2 minutes,Customer reported a problem with...,No further action required,N/A
+743,2024-03-22,Feedback,Lorem ipsum...,General question,6 minutes,Customer reported a problem with...,Follow-up call,N/A
+619,2024-03-22,Feedback,Lorem ipsum...,General question,1 minutes,Customer reported a problem with...,Follow-up call,N/A

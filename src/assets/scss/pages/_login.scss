@@ -1,0 +1,67 @@
+.auth {
+  .login-box {
+    // @include padding(80px 0);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .login {
+      .login-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .login-title {
+          @include font-size(20px);
+          @include margin-bottom(12px);
+          font-family: $inter-semibold;
+          color: $gray-700;
+        }
+      }
+      .login-body {
+        .login-form-card {
+        }
+        .forgot-password {
+          @include margin-bottom(24px);
+          text-decoration: underline;
+          display: flex;
+          justify-content: flex-end;
+          color: $gray-700;
+          cursor: pointer;
+        }
+        .submit-button {
+        }
+        .change-mode {
+          .change-mode-text {
+            cursor: pointer;
+            color: $primary-600;
+            text-decoration: underline;
+          }
+        }
+        .toggle-password {
+          position: relative;
+          .eye-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+            height: 100%;
+            bottom: 0;
+            width: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            cursor: pointer;
+            border-left: 1px solid $gray-300;
+            padding: 18px;
+          }
+        }
+      }
+    }
+  }
+  .link {
+    cursor: pointer;
+    color: $primary-600;
+    text-decoration: underline;
+  }
+}

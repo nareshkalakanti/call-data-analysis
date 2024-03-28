@@ -1,0 +1,18 @@
+
+@mixin button-shadow($color) {
+  -webkit-box-shadow: 1px 1px 10px -9px rgba($color, 0.4);
+  box-shadow: 1px 1px 10px -9px rgba($color, 0.4);
+}
+
+@mixin gradient($list, $deg: 0deg) {
+  background: -webkit-linear-gradient($deg, $list);
+  background: -moz-linear-gradient($deg, $list);
+  background: -o-linear-gradient($deg, $list);
+  background: linear-gradient($deg, $list);
+}
+
+@mixin box-sizing() {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
