@@ -18,22 +18,8 @@
   font-family: "inter-light";
   src: url("./inter-light.ttf");
 }
-
-@font-face {
-  font-family: "sora";
-  src: url("./sora/Sora-Regular.ttf");
-}
-@font-face {
-  font-family: "sora-bold";
-  src: url("./sora/Sora-Bold.ttf");
-}
-
 $inter: "inter", sans-serif;
 $inter-medium: "inter-medium", sans-serif;
 $inter-bold: "inter-bold", sans-serif;
 $inter-semibold: "inter-semibold", sans-serif;
 $inter-light: "inter-light", sans-serif;
-
-$sora: "sora", sans-serif;
-$sora-bold: "sora-bold", sans-serif;
-$sora-light: "sora-light", sans-serif;

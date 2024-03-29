@@ -27,14 +27,3 @@ span {
   width: 0;
   padding: 0;
 }
-@include media-breakpoint-down(sm) {
-  // body {
-  //   padding-top: 75px;
-  //   &.announce {
-  //     padding-top: calc(75px + 62px);
-  //   }
-  // }
-}
-.popup-element {
-  display: none !important;
-}

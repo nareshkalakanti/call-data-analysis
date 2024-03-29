@@ -1,17 +1,9 @@
 $bg-color: "bg-color";
-$bg-color-light: "bg-color-light";
-$text-color: "text-color";
-$dark-black: "dark-black";
-// input prop
+$text-color: "text-color";// input prop
 $input-border: "input-border";
 $input-control-label: "input-control-label";
 
-// Basics
-$ngt-warning: "ngt-warning";
-$ngt-danger: "ngt-danger";
-$ngt-inverse: "ngt-inverse";
-$ngt-inverse-dark: "ngt-inverse-dark";
-$ngt-secondary: "ngt-secondary";
+
 
 $themes: (
   light: (
@@ -19,8 +11,6 @@ $themes: (
     text-color: $gray-900,
     input-border: $primary-200,
     input-control-label: $gray-700,
-    ngt-danger: $red-600,
-    ngt-inverse: $primary-25,
   ),
 );
 
