@@ -1,6 +1,12 @@
 form {
   // ensure enough room at the bottom of any form to display a one-line bmd-help
   margin-bottom: $line-height-base;
+  .form-check {
+    .form-check-input[type="checkbox"] {
+      height: 16px;
+      width: 16px;
+    }
+  }
   // reverse the above for navbars (no help expected in a navbar form)
 }
 .form-group {
@@ -33,6 +39,7 @@ form {
     }
   }
 }
+
 // Inputs
 .form-control,
 .form-group .form-control {

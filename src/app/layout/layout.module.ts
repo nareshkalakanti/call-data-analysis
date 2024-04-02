@@ -4,6 +4,7 @@ import { LayoutComponent } from './layout.component';
 import { LayoutRoutingModule } from './layout.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     LayoutRoutingModule,
+    SharedModule
   ],
   exports: [
   ],

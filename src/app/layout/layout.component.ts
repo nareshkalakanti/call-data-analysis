@@ -3,15 +3,17 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import * as Papa from 'papaparse';
 import { Router } from '@angular/router';
+import { NgbModal } from '../shared/ng-modal';
+import { ContentPriviewComponent } from '../shared/content-priview/content-priview.component';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit, OnDestroy {
+  public selectedItems: any[] = [];
   public fileErrorMessage!: string | null;
   public isLoading = false;
-  public selectedRowIndex: number[] = [];
   public selectedHeader!: string;
   public searchQuery!: string;
   public fileForm = new FormGroup({
@@ -24,12 +26,11 @@ export class LayoutComponent implements OnInit, OnDestroy {
   public files: any[] = []
   public headers: any[] = [];
   public fileData: any[] = [];
-  public tempData: any[] = [];
-  public newTableData: any[] = [];
   public displayData: any[] = [];
+  public selectAll = false;
   public subscription: Array<Subscription> = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router , private modalService:NgbModal) {
 
   }
 
@@ -40,7 +41,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
       this.filterData();
     });
     this.fileForm.controls['rowIndex'].valueChanges.subscribe(() => {
-      this.rowIndexChanged();
+      // this.rowIndexChanged();
     })
   }
   // onFileChange(event: any): void {
@@ -77,8 +78,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.headers = result.meta.fields;
         this.fileData = result.data.map((obj: any, index: any) => ({
-          id: index,
-          data: obj
+          id: index + 1,
+          ...obj
         }));
         // this.fileData = result.data;
         if (this.headers.length > 0) {
@@ -94,36 +95,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
       }
     });
   }
-  // parseCSV(contents: string) {
-  //   if (contents) {
-  //     const lines = contents.split('\n');
-  //     this.headers = lines[0].split(',').map(header => header.trim());
-  //     // Not working in large data
-  //     // ------------------------------
-  //     const data = lines.slice(1).map((line, index) => {
-  //       const values = line.split(',');
-  //       const rowData: any = {};
-  //       this.headers.forEach((header, index) => {
-  //         rowData[header] = values[index] && values[index].trim();
-  //       });
-  //       // return { id: index, data: rowData };
-  //       return rowData
-  //     });
-  //     // ------------------------------
 
-  //     if (this.headers.length > 0) {
-  //       this.fileForm.patchValue({
-  //         columnHeader: this.headers[0]
-  //       })
-  //     }
-  //     // this.fileData = data;
-  //     this.fileData = data.map((obj, index) => ({
-  //       id: index,
-  //       data: obj
-  //     }));
-  //     this.filterData();
-  //   }
-  // }
   removeFiles(): void {
     this.fileErrorMessage = null;
     this.fileData = [];
@@ -131,9 +103,9 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this.files = [];
     this.displayData = [];
     this.fileForm.reset();
-    this.removeAllIndex();
+    this.selectedItems = [];
+    // this.removeAllIndex();
     this.selectedHeader = '';
-    this.selectedRowIndex = [];
   }
   onSelectChange(): void {
     this.filterData();
@@ -141,7 +113,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   filterData() {
     if (this.selectedHeader && this.searchQuery) {
       this.displayData = this.fileData.filter(item => {
-        const cellValue = item.data[this.selectedHeader] && item.data[this.selectedHeader].toString().toLowerCase();
+        const cellValue = item[this.selectedHeader] && item[this.selectedHeader].toString().toLowerCase();
         return cellValue && cellValue.includes(this.searchQuery.toLowerCase());
       });
     } else {
@@ -149,25 +121,28 @@ export class LayoutComponent implements OnInit, OnDestroy {
       console.log("Display => ", this.displayData);
     }
   }
-  rowIndexChanged(): void {
-    this.selectedRowIndex.push(this.fileForm.controls['rowIndex'].value);
-    console.log("Row index array", this.selectedRowIndex);
-    this.filterNewTableData(this.selectedRowIndex);
-  }
-  removeRowIndex(index: number): void {
-    this.selectedRowIndex.splice(index, 1);
-    this.filterNewTableData(this.selectedRowIndex);
-  }
-  removeAllIndex(): void {
-    this.selectedRowIndex = [];
-    this.filterNewTableData(this.selectedRowIndex);
-  }
-  filterNewTableData(indices: number[]): void {
-    if (!indices || indices.length === 0) {
-      this.newTableData = [];
-      return;
+
+  onCheckboxChange(item: any) {
+    if (!item.selected) {
+      this.selectAll = false; // Uncheck "select all" if any item is deselected
     }
-    this.newTableData = this.fileData.filter(obj => indices.includes(obj.id.toString()));
+    this.updateSelectedItems();
+
+  }
+  selectAllItems(): void {
+    this.selectAll = !this.selectAll;
+    this.fileData.forEach(item => item.selected = this.selectAll);
+    this.updateSelectedItems();
+  }
+  updateSelectedItems() {
+    this.selectedItems = this.fileData.filter(item => item.selected);
+  }
+  openModal(title:string,content:string){
+    if(!this.modalService.hasOpenModals()){
+      const modalRef = this.modalService.open(ContentPriviewComponent);
+      modalRef.componentInstance.title = title;
+      modalRef.componentInstance.content = content;
+    }
   }
   logoutUser(): void {
     this.router.navigate(['/login']);
@@ -176,6 +151,4 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this.subscription.forEach(i => i.unsubscribe());
     this.removeFiles();
   }
-
-
 }
