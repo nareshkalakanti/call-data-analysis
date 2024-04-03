@@ -5,6 +5,7 @@ import * as Papa from 'papaparse';
 import { Router } from '@angular/router';
 import { NgbModal } from '../shared/ng-modal';
 import { ContentPriviewComponent } from '../shared/content-priview/content-priview.component';
+import { CustomerCallService } from '../_service/customer-call.service';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -20,7 +21,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
     file: new FormControl<any>(null, []),
     columnHeader: new FormControl<string | null>('', []),
     searchQuery: new FormControl<string | null>(null, []),
-    rowIndex: new FormControl<any>('', []),
   });
 
   public files: any[] = []
@@ -30,83 +30,19 @@ export class LayoutComponent implements OnInit, OnDestroy {
   public selectAll = false;
   public subscription: Array<Subscription> = [];
 
-  constructor(private router: Router , private modalService:NgbModal) {
+  constructor(private router: Router , private modalService:NgbModal, private customerCallService:CustomerCallService) {
 
   }
 
   ngOnInit(): void {
+    this.getJsonData();
     this.fileForm.valueChanges.subscribe(() => {
       this.selectedHeader = this.fileForm.controls['columnHeader'].value!;
       this.searchQuery = this.fileForm.controls['searchQuery'].value!;
       this.filterData();
     });
-    this.fileForm.controls['rowIndex'].valueChanges.subscribe(() => {
-      // this.rowIndexChanged();
-    })
-  }
-  // onFileChange(event: any): void {
-  //   this.files = event.target.files;
-  //   const file = this.files[0];
-  //   if (!file.type.includes('text/csv')) {
-  //     this.fileErrorMessage = 'Please select CSV file!';
-  //     return
-  //   }
-
-  //   const reader = new FileReader();
-  //   reader.onload = (e: any) => {
-  //     const contents = e.target.result;
-  //     this.parseCSV(contents);
-  //   };
-
-  //   reader.readAsText(file);
-  // }
-  onFileChange(event: any): void {
-    this.files = event.target.files;
-    const file = this.files[0];
-    if (!file) {
-      return
-    }
-    if (!file.type.includes('text/csv')) {
-      this.fileErrorMessage = 'Please select CSV file!';
-      return
-    }
-    this.isLoading = true;
-    Papa.parse(file, {
-      header: true,
-      dynamicTyping: true,
-      complete: (result: any) => {
-        this.isLoading = false;
-        this.headers = result.meta.fields;
-        this.fileData = result.data.map((obj: any, index: any) => ({
-          id: index + 1,
-          ...obj
-        }));
-        // this.fileData = result.data;
-        if (this.headers.length > 0) {
-          this.fileForm.patchValue({
-            columnHeader: this.headers[0]
-          })
-        }
-        this.filterData();
-      },
-      error: (error) => {
-        console.error('Error parsing CSV:', error);
-        this.isLoading = false;
-      }
-    });
   }
 
-  removeFiles(): void {
-    this.fileErrorMessage = null;
-    this.fileData = [];
-    this.headers = [];
-    this.files = [];
-    this.displayData = [];
-    this.fileForm.reset();
-    this.selectedItems = [];
-    // this.removeAllIndex();
-    this.selectedHeader = '';
-  }
   onSelectChange(): void {
     this.filterData();
   }
@@ -118,7 +54,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
       });
     } else {
       this.displayData = this.fileData;
-      console.log("Display => ", this.displayData);
     }
   }
 
@@ -137,18 +72,35 @@ export class LayoutComponent implements OnInit, OnDestroy {
   updateSelectedItems() {
     this.selectedItems = this.fileData.filter(item => item.selected);
   }
-  openModal(title:string,content:string){
-    if(!this.modalService.hasOpenModals()){
-      const modalRef = this.modalService.open(ContentPriviewComponent);
-      modalRef.componentInstance.title = title;
-      modalRef.componentInstance.content = content;
-    }
+  getJsonData():void{
+    this.isLoading = true;
+    this.customerCallService.getCustomerData().subscribe({
+      next:(res)=>{
+        this.fileData = res;
+        this.headers = this.fileData && Object.keys(this.fileData[0]);
+        this.fileData = res.map((obj: any, index: any) => ({
+          id: index + 1,
+          ...obj
+        }));
+        // this.fileData = result.data;
+        if (this.headers.length > 0) {
+          this.fileForm.patchValue({
+            columnHeader: this.headers[0]
+          })
+        }
+        this.filterData();
+        this.isLoading = false;
+      },
+      error:(err)=>{
+        console.log("Error => ", err);
+        this.isLoading = false;
+      }
+    })
   }
   logoutUser(): void {
     this.router.navigate(['/login']);
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());
-    this.removeFiles();
   }
 }
